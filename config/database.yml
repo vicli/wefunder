@@ -1,0 +1,13 @@
+defaults: &defaults
+  encoding: unicode
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *defaults
+  database: project_development
+
+test:
+  <<: *defaults
+  database: project_test
