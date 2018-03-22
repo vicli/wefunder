@@ -10,19 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320213133) do
+ActiveRecord::Schema.define(version: 20180322210524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
-    t.string "first_name", null: false
-    t.string "last_name", null: false
-    t.string "email", null: false
+  create_table "contestants", force: :cascade do |t|
+    t.integer "tournament_id", null: false
+    t.boolean "active", default: true
+    t.string "name"
+    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "password_digest"
-    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "round_id"
+    t.boolean "active", default: true
+    t.integer "contestant_one_id", null: false
+    t.integer "contestant_two_id", null: false
+    t.integer "contestant_one_score"
+    t.integer "contestant_two_score"
+    t.integer "winner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer "tournament_id", null: false
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tournaments", force: :cascade do |t|
+    t.string "name"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
