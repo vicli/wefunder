@@ -1,0 +1,13 @@
+<div>
+  <h1>SFOSL</h1>
+  <div >
+    <% if @tournament %>
+      <%= render partial: 'dashboard/contstant_list', locals: { contestants: @contestants } %>
+      <%= link_to "Create Round", new_tournament_path %>
+    <% else %>
+      <%= link_to "Create new Tournament", new_tournament_path %>
+    <% end %>
+
+  </div>
+
+</div>

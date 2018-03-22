@@ -1,0 +1,18 @@
+<h1>Create contestants for tournament</h1>
+
+<div class="row">
+  <%= form_tag(contestants_path, method: :post) do %>
+    <% for contestant in @contestants %>
+        <%= fields_for "contestants[]", contestant do |f| %>
+          <p>Contestant</p>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+
+          <%= f.label :email %>
+          <%= f.email_field :email, class: 'form-control' %>
+
+        <% end %>
+    <% end %>
+    <%= submit_tag "Create", class: "btn btn-primary"%>
+<% end %>
+</div>

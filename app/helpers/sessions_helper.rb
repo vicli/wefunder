@@ -26,4 +26,12 @@ module SessionsHelper
       redirect_to login_url
     end
   end
+
+  def setup_tournament(tournament)
+    session[:tournament_id] = tournament.id
+  end
+
+  def current_tournament
+    @current_tournament ||= Tournament.find_by(id: session[:tournament_id])
+  end
 end

@@ -13,4 +13,9 @@
 
 class Contestant < ApplicationRecord
   validates :tournament_id, presence: true
+  belongs_to :tournament
+
+  def self.active_for_tournament(tournament_id)
+    Contestant.where(active: true, tournament_id: tournament_id)
+  end
 end

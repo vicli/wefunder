@@ -1,0 +1,17 @@
+<h1>Create a new tournament</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:tournaments, url: tournaments_path) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :number_of_contestants %>
+      <%= f.number_field :number_of_contestants, class: 'form-control' %>
+
+      <%= f.submit "Create", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

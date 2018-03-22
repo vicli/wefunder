@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  # get 'sessions/new'
 
-  root 'users#index'
+  root 'dashboard#index'
 
-  get    '/signup',  to: 'users#new'
-  get    '/login',   to: 'sessions#new'
-  post   '/login',   to: 'sessions#create'
-  delete '/logout',  to: 'sessions#destroy'
+  # get    '/signup',  to: 'users#new'
+  # get    '/login',   to: 'sessions#new'
+  # post   '/login',   to: 'sessions#create'
+  # delete '/logout',  to: 'sessions#destroy'
 
-  resources :users
+  resources :tournaments
+  resources :rounds
+  resources :matches
+  resources :contestants
 end
