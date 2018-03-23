@@ -10,6 +10,8 @@
       <%= f.label :number_of_contestants %>
       <%= f.number_field :number_of_contestants, class: 'form-control' %>
 
+      <%= f.select :tournament_type, ['ping_pong', 'fooseball']%>
+
       <%= f.submit "Create", class: "btn btn-primary" %>
     <% end %>
 

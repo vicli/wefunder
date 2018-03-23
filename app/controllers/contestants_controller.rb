@@ -24,7 +24,6 @@ class ContestantsController < ApplicationController
     else
       flash[:notice] = 'Contestants cannot be created'
       redirect_to 'new'
-      p "no"
     end
   end
 end

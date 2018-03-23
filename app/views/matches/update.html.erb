@@ -1,0 +1,19 @@
+<h1>Update Match</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@match) do |f| %>
+
+      <p> First contestant name:  <%= @contestant_1.name %></p>
+      <%= f.label :contestant_one_score %>
+      <%= f.number_field :contestant_one_score, class: 'form-control' %>
+
+      <p> Second contestant name:  <%= @contestant_2.name %></p>
+      <%= f.label :contestant_two_score %>
+      <%= f.number_field :contestant_two_score, class: 'form-control' %>
+
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

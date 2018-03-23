@@ -41,7 +41,11 @@
           <p>Winner is <%= @winner.name %> </p>
         <% else %>
           <div>
-            <%= link_to "Create New Round", tournament_rounds_path(@tournament), :method => :post %>
+            <% if @tournament.tournament_type == 'ping_pong' && @has_generated_contestants %>
+              <%= link_to "Create New Round", tournament_rounds_path(@tournament), :method => :post %>
+            <% elsif @tournament.tournament_type == 'fooseball' %>
+              <%= link_to "Create New Round", tournament_rounds_path(@tournament), :method => :post %>
+            <%end %>
           </div>
         <% end %>
     <% else %>

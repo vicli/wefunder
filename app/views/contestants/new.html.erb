@@ -1,7 +1,7 @@
 <h1>Create contestants for tournament</h1>
 
 <div class="row">
-  <%= form_tag(contestants_path, method: :post) do %>
+  <%= form_tag(tournament_contestants_path, method: :post) do %>
     <% for contestant in @contestants %>
         <%= fields_for "contestants[]", contestant do |f| %>
           <p>Contestant</p>

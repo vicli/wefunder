@@ -1,0 +1,8 @@
+<h2>Welcome to San Francisco Office Sports League!</h2>
+
+<%= link_to "Create new Tournament", new_tournament_path %>
+
+<h4>Existing tournaments</h4>
+<% @tournaments.each do |tournament|%>
+  <li><%= link_to tournament.name, tournament_path(tournament) %></li>
+<% end %>

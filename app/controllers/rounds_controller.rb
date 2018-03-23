@@ -7,16 +7,28 @@ class RoundsController < ApplicationController
   end
 
   def create
+    current_tournament = Tournament.find(params[:tournament_id])
+    round_number = Round.current_round(current_tournament.id) + 1
+    @round = Round.new(tournament_id: current_tournament.id, round_number: round_number )
 
-    @round = Round.new(tournament_id: )
     if @round.save
-      MatchCreationService.create_match_for_round(@round)
-    if @tournament.save
-      setup_tournament(@tournament)
-      redirect_to new_contestant_path(tournament_id: @tournament.id, number_of_contestants: params[:tournaments][:number_of_contestants])
+      MatchCreationService.new().create_matches_for_round(@round)
+      redirect_to tournament_path(current_tournament)
     else
       flash[:notice] = 'Tournament cannot be created'
       render 'new'
+    end
+  end
+
+  def finish
+    current_tournament = Tournament.find(params[:tournament_id])
+
+    @round = Round.find(params[:id])
+
+    if @round.conclude_round
+      redirect_to tournament_path(current_tournament)
+    else
+      flash[:notice] = 'Cannot conclude round'
     end
   end
 
