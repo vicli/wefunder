@@ -33,7 +33,7 @@ class TournamentsController < ApplicationController
     @tournament.update_attributes(active: false)
     delete_tournament
 
-    redirect_to tournament_path(@tournament)
+    redirect_to root_path
   end
 
   def generate_finalists

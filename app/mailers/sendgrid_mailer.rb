@@ -3,9 +3,9 @@ include SendGrid
 require 'json'
 
 class SendgridMailer
-  def self.send(user, template_id)
+  def self.send(user_email, contestant, table_num)
     from = Email.new(email: 'test@example.com')
-    to = Email.new(email: 'victoli.d@gmail.com')
+    to = Email.new(email: user_email)
 
     subject = 'Sending with SendGrid is Fun'
     content = Content.new(type: 'text/plain', value: 'and easy to do anywhere, even with Ruby')

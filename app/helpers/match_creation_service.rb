@@ -3,7 +3,6 @@ class MatchCreationService
   end
 
   def create_matches_for_round(round)
-
     contestant_ids = determine_contestants_based_tournament_type(round)
 
     match_pairing_ids = contestant_ids.each_slice(2).to_a
@@ -16,6 +15,11 @@ class MatchCreationService
           create_one_player_match(round,pairing)
         end
       end
+    end
+
+    tournament = Tournament.find(round.tournament_id)
+    if tournament.tournament_type == 'ping_pong'
+      EmailService.notify_contestants(round)
     end
   end
 
