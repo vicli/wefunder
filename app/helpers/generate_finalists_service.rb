@@ -6,6 +6,8 @@ class GenerateFinalistsService
     Contestant.where(tournament_id: tournament_id).each do |contestant|
       play_rounds(contestant)
     end
+
+    create_finalists(tournament_id)
   end
 
   def play_rounds(contestant)
@@ -28,7 +30,11 @@ class GenerateFinalistsService
     TournamentContestantStat.create(contestant_id: contestant.id, tournament_id: @tournament_id, wins: wins, losses: losses,  delta: wins-losses)
   end
 
-
+  def create_finalists(tournament_id)
+      Contestant.where.not(id: TournamentContestantStat.top_contestant_ids(tournament_id)).each do |contestant|
+        contestant.update_attributes(active:false)
+      end
+  end
   private
 
   def play

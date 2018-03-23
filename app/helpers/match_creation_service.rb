@@ -3,7 +3,7 @@ class MatchCreationService
   end
 
   def create_matches_for_round(round)
-    contestant_ids = determine_contestants_based_tournament_type(round)
+    contestant_ids = Contestant.active_contestants_for_tournament(round.tournament_id).pluck(:id)
 
     match_pairing_ids = contestant_ids.each_slice(2).to_a
 
@@ -47,13 +47,5 @@ class MatchCreationService
     )
   end
 
-  def determine_contestants_based_tournament_type(round)
-    tournament = Tournament.find(round.tournament_id)
 
-    if tournament.tournament_type == 'fooseball'
-      Contestant.active_contestants_for_tournament(round.tournament_id).pluck(:id)
-    else
-      TournamentContestantStat.top_contestant_ids(round.tournament_id)
-    end
-  end
 end

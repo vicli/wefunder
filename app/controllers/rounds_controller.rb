@@ -22,7 +22,6 @@ class RoundsController < ApplicationController
 
   def finish
     current_tournament = Tournament.find(params[:tournament_id])
-
     @round = Round.find(params[:id])
 
     if @round.conclude_round
